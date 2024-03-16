@@ -1,10 +1,12 @@
 import item from "./TodoList";
 
 
-function TodoListItem (props) {
-    const { todo} = props;
+function TodoListItem ({todo}) {
   return  (
-        <span>{todo.title}</span>
+    <li key={todo.id}>
+      <span>{todo.title}</span>
+    </li>
+        
   )
 }
 

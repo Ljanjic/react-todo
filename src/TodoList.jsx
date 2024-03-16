@@ -19,16 +19,12 @@ function TodoList () {
       <div> 
        <ul>
         {todoList.map((item) => (
-          <li key={item.id}>
-            <TodoListItem todo={item} />
-          </li>
+            <TodoListItem key={item.id} todo={item} />
         ))}
      </ul>
   </div>
   );
 };
-
-
 
 
 
