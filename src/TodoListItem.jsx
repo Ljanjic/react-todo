@@ -3,7 +3,7 @@ import item from "./TodoList";
 
 function TodoListItem ({ todo }) {
   return  (
-    <li key={todo.id}>
+    <li>
       <span>{todo.title}</span>
     </li>
         

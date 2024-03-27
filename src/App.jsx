@@ -14,9 +14,15 @@ function App() {
 
   return (
     <div>
-  <h1>Todo List</h1>
-  < AddTodoForm onAddTodo={addTodo} />
-  < TodoList todoList={todoList} />
+    <div>
+      <h1>Todo List</h1>
+    </div>
+    <div>
+      <AddTodoForm onAddTodo={addTodo} />
+    </div>
+    <div>
+      <TodoList todoList={todoList} />
+    </div>
   </div>
   );
 }
