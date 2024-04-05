@@ -1,19 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 
+function useSemiPersistentState() {
+  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('savedTodoList')) || []);
+  useEffect(() => {
+    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+  }, [todoList]);
+
+  return [todoList, setTodoList];
+};
+
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useSemiPersistentState();
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
 
   return (
-    <div>
+    <>
     <div>
       <h1>Todo List</h1>
     </div>
@@ -23,8 +32,8 @@ function App() {
     <div>
       <TodoList todoList={todoList} />
     </div>
-  </div>
+  </>
   );
-}
+};
 
 export default App;
