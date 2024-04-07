@@ -25,6 +25,7 @@ function AddTodoForm ({ onAddTodo }) {
           name="title"
           value={todoTitle}
           onChange={handleTitleChange}
+          autoFocus={true}
           >
             Title:
           </InputWithLabel>

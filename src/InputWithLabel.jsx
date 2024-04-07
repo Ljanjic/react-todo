@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const InputWithLabel = (props) => {
-  return (
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+      inputRef.current.focus();
+    }, []);
+
+    return (
     <>
     <label htmlFor={props.id}>{props.children}</label>
           <input 
@@ -10,6 +16,7 @@ const InputWithLabel = (props) => {
           name={props.name}
           value={props.value} 
           onChange={props.onChange} 
+          ref={inputRef}
           />
     </>
   );
