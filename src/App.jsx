@@ -7,15 +7,36 @@ import TodoList from './TodoList'
 
 
 function App() {
-  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('savedTodoList')) || []);
-  useEffect(() => {
-    localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-  }, [todoList]);
+  const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchData = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('Current todoList:', todoList);
+        resolve({ data: { todoList: todoList } });
+      }, 2000);
+    });
+  };
+  fetchData()
+    .then((response) => {
+      console.log('Response data:', response.data);
+    return response.data;
+    })
+    .then(result => {
+      console.log('Result:', result);
+      setTodoList(result.todoList);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      setIsLoading(false);
+    });
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
- 
+
   const removeTodo = (id) => {
   const updatedTodoList = todoList.filter(todo => todo.id !==id);
   setTodoList(updatedTodoList);
@@ -30,7 +51,11 @@ function App() {
       <AddTodoForm onAddTodo={addTodo} />
     </div>
     <div>
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
     </div>
   </>
   );
