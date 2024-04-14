@@ -13,18 +13,21 @@ function App() {
   const fetchData = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log('Current todoList:', todoList);
-        resolve({ data: { todoList: todoList } });
+        const savedTodoList = localStorage.getItem('savedTodoList');
+        const parsedTodoList = savedTodoList ? JSON.parse(savedTodoList) : [];
+        resolve({ data: { todoList: parsedTodoList } });
       }, 2000);
     });
   };
-  fetchData()
-    .then((response) => {
-      console.log('Response data:', response.data);
-    return response.data;
-    })
+
+  useEffect(() => {
+    fetchData()
+      .then((response) => {
+        setTodoList(response.data.todoList);
+        setIsLoading(false);
+        return response.data;
+      })
     .then(result => {
-      console.log('Result:', result);
       setTodoList(result.todoList);
       setIsLoading(false);
     })
@@ -32,14 +35,21 @@ function App() {
       console.error('Error:', error);
       setIsLoading(false);
     });
+   }, []);
+
+   useEffect(() => {
+    if (!isLoading) {
+      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    }
+  }, [todoList, isLoading]);
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   };
 
   const removeTodo = (id) => {
-  const updatedTodoList = todoList.filter(todo => todo.id !==id);
-  setTodoList(updatedTodoList);
+    const updatedTodoList = todoList.filter(todo => todo.id !==id);
+    setTodoList(updatedTodoList);
   };
 
   return (
