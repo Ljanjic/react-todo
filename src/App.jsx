@@ -9,30 +9,43 @@ function App() {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const fetchData = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const savedTodoList = localStorage.getItem('savedTodoList');
-                const parsedTodoList = savedTodoList
-                    ? JSON.parse(savedTodoList)
-                    : [];
-                resolve({ data: { todoList: parsedTodoList } });
-            }, 2000);
-        });
-    };
+    async function fetchData() {
+        try {
+            setIsLoading(true);
+            const url = `https://api.airtable.com/v0/${
+                import.meta.env.VITE_AIRTABLE_BASE_ID
+            }/${import.meta.env.VITE_TABLE_NAME}`;
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${
+                        import.meta.env.VITE_AIRTABLE_API_TOKEN
+                    }`,
+                },
+            };
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`Error has occured: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const todos = data.records.map((record) => ({
+                id: record.id,
+                title: record.fields.title,
+            }));
+
+            setTodoList(todos);
+        } catch (error) {
+            console.error('Error fetching todos:', error.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
     useEffect(() => {
-        fetchData()
-            .then((response) => {
-                setTodoList(response.data.todoList);
-                return response.data;
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+        fetchData();
     }, []);
 
     useEffect(() => {
