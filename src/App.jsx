@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import AddTodoForm from './AddTodoForm';
 import TodoList from './TodoList';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
     const [todoList, setTodoList] = useState([]);
@@ -64,21 +65,41 @@ function App() {
     };
 
     return (
-        <>
-            <div>
-                <h1>Todo List</h1>
-            </div>
-            <div>
-                <AddTodoForm onAddTodo={addTodo} />
-            </div>
-            <div>
-                {isLoading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-                )}
-            </div>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path='/'
+                    element={
+                        <>
+                            <div>
+                                <h1>Todo List</h1>
+                            </div>
+                            <div>
+                                <AddTodoForm onAddTodo={addTodo} />
+                            </div>
+                            <div>
+                                {isLoading ? (
+                                    <p>Loading...</p>
+                                ) : (
+                                    <TodoList
+                                        todoList={todoList}
+                                        onRemoveTodo={removeTodo}
+                                    />
+                                )}
+                            </div>
+                        </>
+                    }
+                />
+                <Route
+                    path='/new'
+                    element={
+                        <>
+                            <h1>New Todo List</h1>
+                        </>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
