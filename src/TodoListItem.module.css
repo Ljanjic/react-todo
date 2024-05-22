@@ -13,7 +13,7 @@
 
 body {
     background-color: #101012;
-    color: #d0be17;
+    color: #ffff00;
     font-weight: 700;
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -39,6 +39,10 @@ nav a:hover {
     background-color: #1fdc45;
 }
 
+.label {
+    font-size: 1.5rem; /* Change this value to make the text larger */
+    font-weight: bold; /* Optional: Make the text bold */
+}
 .container {
     margin-bottom: 1rem;
     padding: 20px;
@@ -46,7 +50,7 @@ nav a:hover {
 
 h1 {
     font-family: 'Roboto', Arial, sans-serif;
-    color: #e71212;
+    color: hsl(358, 95%, 45%);
     font-weight: 700;
     margin-top: 0;
 }
