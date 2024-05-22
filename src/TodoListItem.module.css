@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.ListItem {
+    display: flex;
+    color: rgb(34, 184, 47);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+body {
+    background-color: #101012;
+    color: #d0be17;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #007bff;
+    padding: 1rem;
+}
+
+nav a {
+    color: #dbe611;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px 15px;
+    margin: 15px;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+nav a:hover {
+    color: #007bff;
+    background-color: #1fdc45;
+}
+
+.container {
+    margin-bottom: 1rem;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #e71212;
+    font-weight: 700;
+    margin-top: 0;
+}
+input[type='text'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #040413;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
