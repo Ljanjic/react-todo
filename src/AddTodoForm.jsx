@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputWithLabel from './InputWithLabel';
+
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = useState('');
 
@@ -9,12 +10,10 @@ function AddTodoForm({ onAddTodo }) {
     };
     const handleAddTodo = (event) => {
         event.preventDefault();
-        const newTodo = {
-            title: todoTitle,
-            id: Date.now(),
-        };
-        onAddTodo(newTodo);
-        setTodoTitle('');
+        if (todoTitle.trim() !== '') {
+            onAddTodo(todoTitle);
+            setTodoTitle('');
+        }
     };
     return (
         <form onSubmit={handleAddTodo}>
