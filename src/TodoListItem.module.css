@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.ListItem {
-    display: flex;
-    color: rgb(34, 184, 47);
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
 body {
     background-color: #101012;
     color: #ffff00;
@@ -40,9 +29,10 @@ nav a:hover {
 }
 
 .label {
-    font-size: 1.5rem; /* Change this value to make the text larger */
-    font-weight: bold; /* Optional: Make the text bold */
+    font-size: 1.5rem;
+    font-weight: bold;
 }
+
 .container {
     margin-bottom: 1rem;
     padding: 20px;
@@ -54,6 +44,7 @@ h1 {
     font-weight: 700;
     margin-top: 0;
 }
+
 input[type='text'] {
     padding: 10px;
     border: 1px solid #ccc;
@@ -75,4 +66,71 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.ListItem {
+    display: flex;
+    color: rgb(34, 184, 47);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.todo-text {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button.update-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+button.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+button.update-btn:hover {
+    background-color: #45a049;
+}
+
+button.delete-btn:hover {
+    background-color: #e53935;
+}
+
+.todo-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.todo-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.todo-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+input {
+    flex: 1;
+    margin-right: 10px;
 }
