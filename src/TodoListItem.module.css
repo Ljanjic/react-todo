@@ -92,3 +92,26 @@ input {
     flex: 1;
     margin-bottom: 10px;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.form input {
+    margin: 15px 0;
+    width: 100%;
+}
+@media screen and (min-width: 768px) {
+    .form {
+        flex-direction: row;
+        height: auto;
+    }
+    .form input {
+        margin: 0 15px;
+        width: auto;
+    }
+}
