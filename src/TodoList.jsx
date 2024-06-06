@@ -1,4 +1,6 @@
+import React from 'react';
 import TodoListItem from './TodoListItem';
+import styles from './TodoListItem.module.css';
 
 function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
     const handleRemoveTodo = (id) => {
@@ -13,7 +15,7 @@ function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
         <div>
             <ul>
                 {todoList.map((todo) => (
-                    <li key={todo.id}>
+                    <li key={todo.id} className={styles.todoItem}>
                         <TodoListItem
                             todo={todo}
                             onRemoveTodo={handleRemoveTodo}

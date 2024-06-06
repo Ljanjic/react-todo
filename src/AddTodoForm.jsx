@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputWithLabel from './InputWithLabel';
+import styles from './TodoListItem.module.css';
 
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = useState('');
@@ -11,16 +12,12 @@ function AddTodoForm({ onAddTodo }) {
     const handleAddTodo = (event) => {
         event.preventDefault();
         if (todoTitle.trim() !== '') {
-            // const newTodo = {
-            //   title: todoTitle,
-            //   id: Date.now(),
-            // };
             onAddTodo(todoTitle);
             setTodoTitle('');
         }
     };
     return (
-        <form onSubmit={handleAddTodo}>
+        <form onSubmit={handleAddTodo} className={styles.form}>
             <InputWithLabel
                 type='text'
                 id='todoTitle'
@@ -28,6 +25,7 @@ function AddTodoForm({ onAddTodo }) {
                 value={todoTitle}
                 onChange={handleTitleChange}
                 autoFocus={true}
+                className={styles.formInput}
             >
                 Title:
             </InputWithLabel>
