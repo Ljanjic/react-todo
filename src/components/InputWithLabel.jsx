@@ -33,7 +33,7 @@ InputWithLabel.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
-    todoList: PropTypes.array.isRequired,
+    todoList: PropTypes.array,
 };
 
 export default InputWithLabel;

@@ -32,7 +32,7 @@ function TodoList({ todoList, onRemoveTodo, onUpdateTodo }) {
 TodoList.propTypes = {
     todoList: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
         }),
     ).isRequired,
