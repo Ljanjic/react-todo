@@ -6,13 +6,18 @@ import TodoList from './TodoList';
 const TodoContainer = ({ tableName }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [sortOrder, setSortOrder] = useState('asc');
+
+    const toggleSortOrder = () => {
+        setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+    };
 
     async function fetchData() {
         try {
             setIsLoading(true);
             const url = `https://api.airtable.com/v0/${
                 import.meta.env.VITE_AIRTABLE_BASE_ID
-            }/${tableName}?view=Grid%20view`;
+            }/${tableName}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=${sortOrder}`;
 
             console.log('Fetching data from URL:', url);
 
@@ -45,7 +50,7 @@ const TodoContainer = ({ tableName }) => {
 
     useEffect(() => {
         fetchData();
-    }, [tableName]);
+    }, [tableName, sortOrder]);
 
     const addTodo = async (newTodoTitle) => {
         try {
@@ -172,6 +177,9 @@ const TodoContainer = ({ tableName }) => {
     return (
         <div>
             <h1>{tableName}</h1>
+            <button onClick={toggleSortOrder}>
+                Sort {sortOrder === 'asc' ? 'Descending' : 'Ascending'}
+            </button>
             <AddTodoForm onAddTodo={addTodo} />
             {isLoading ? (
                 <p>Loading...</p>
